@@ -2,7 +2,7 @@
 #include<stdio.h>
 typedef struct Piece {	// typedef struct ~ << main함수에서 매번 struct를 사용할 필요 x
 	int type;	// 1 Pawn 2 Rock 3 Knight 4 bishop 5 Queen 6 King
-//	int x, y;
+	//	int x, y;
 	int team;	// 0 black 1 white
 }Piece;	//구조체 별칭
 
@@ -21,8 +21,8 @@ static Piece pBoard[10][10] = { 0, };
 */
 class ChessBoard {
 private:
-//	static Piece pBoard[10][10];
-	
+	//	static Piece pBoard[10][10];
+
 public:
 	ChessBoard(Piece _pBoard[][10]);
 	Piece* ChessDisplay(Piece _pBoard[][10]);
