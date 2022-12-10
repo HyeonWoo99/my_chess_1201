@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Board.GetCommand2.cpp" />
+    <ClCompile Include="Board.GetCommand.cpp" />
     <ClCompile Include="Board.MoveTo.cpp" />
     <ClCompile Include="Let_Play.cpp" />
     <ClCompile Include="main.cpp" />
