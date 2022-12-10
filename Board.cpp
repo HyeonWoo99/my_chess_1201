@@ -61,11 +61,12 @@ ChessBoard::ChessBoard(Piece _pBoard[][10]) { // Ã¼½º¸» Á¤ÀÇ
 
 	//	}
 }
-Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10]) {
+Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10],int turn_) {
 	//	cout << "41\n";
 //	Sleep(100);
 	system("cls");
 	int King[2] = { 0, };
+	int turn = turn_;
 	for (int y = 0; y <= 9; y++) {
 		//		cout << "42\n";
 		for (int x = 0; x <= 9; x++) {
@@ -99,7 +100,7 @@ Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10]) {
 				cout << "Æù ";
 				break;
 			case 2:
-				cout << "·Ï ";
+				cout << "·è ";
 				break;
 			case 3:
 				cout << "³ª ";
@@ -133,6 +134,15 @@ Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10]) {
 		cout << "Èæ ½Â";
 		Sleep(1000);
 		exit(0);
+	}
+	cout << "\nÅÏ ¼ö: " << turn;
+	if (turn % 2 == 0)
+	{
+		cout << "\nÂ÷·Ê : ¹é";
+	}
+	else
+	{
+		cout << "\nÂ÷·Ê : Èæ";
 	}
 	return *_pBoard;
 }
