@@ -3,8 +3,7 @@
 
 class ChessBoard;
 class ChessPlay {
-private:
-	//	const ChessBoard* pBoard;
+
 public:
 	ChessPlay();
 	~ChessPlay();

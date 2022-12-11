@@ -6,17 +6,16 @@
 #include<iostream>
 using namespace std;
 
-int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
-int Ro(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
-int Kn(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
-int Bi(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
-int Qu(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
-int Ki(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn);
+int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
+int Ro(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
+int Kn(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
+int Bi(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
+int Qu(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
+int Ki(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn);
 void gotoXY(int x, int y);
 
-int ChessBoard::MoveTo(int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn_) 
+int ChessBoard::MoveTo(int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn_)
 {
-	//	Piece _pBoard[10][10] = ChessBoard::_pBoard;
 	int team = _pBoard[ay][ax].team;
 	int type = _pBoard[ay][ax].type;
 	int tmp_B[10][10] = { 0, };	//0 불가능 1 가능 2 어택
@@ -41,44 +40,31 @@ int ChessBoard::MoveTo(int ax, int ay, int bx, int by, Piece _pBoard[][10], int 
 		return 0;
 		break;
 	case 1:
-		return Pa(team, ax, ay, bx, by, _pBoard,turn);
+		return Pa(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	case 2:
-		return Ro(team, ax, ay, bx, by, _pBoard,turn);
+		return Ro(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	case 3:
-		return Kn(team, ax, ay, bx, by, _pBoard,turn);
+		return Kn(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	case 4:
-		return Bi(team, ax, ay, bx, by, _pBoard,turn);
+		return Bi(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	case 5:
-		return Qu(team, ax, ay, bx, by, _pBoard,turn);
+		return Qu(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	case 6:
-		return Ki(team, ax, ay, bx, by, _pBoard,turn);
+		return Ki(team, ax, ay, bx, by, _pBoard, turn);
 		break;
 	default:
 		return 0;
-		printf("   ");
 	}
 
 	return 0;
 }
-/// <summary>
-/*
-0  1  2  3  4  5  6  7  8  9
-1  Ro Kn Bi Ki Qu Bi Kn Ro ㅣ
-2  Pa Pa Pa Pa Pa Pa Pa Pa ㅣ
-3  .. .. .. .. .. .. .. .. ㅣ
-4  .. .. .. .. .. .. .. .. ㅣ
-5  .. .. .. .. .. .. .. .. ㅣ
-6  .. .. .. .. .. .. .. .. ㅣ
-7  Pa Pa Pa Pa Pa Pa Pa Pa ㅣ
-8  Ro Kn Bi Ki Qu Bi Kn Ro ㅣ
-9  ㅣ ㅣ ㅣ ㅣ ㅣ ㅣ ㅣ ㅣ ㅣ
-*/
-void _move(int ax, int ay, int bx, int by, Piece _pBoard[][10]) 
+
+void _move(int ax, int ay, int bx, int by, Piece _pBoard[][10])
 {
 	_pBoard[by][bx].type = _pBoard[ay][ax].type;
 	_pBoard[by][bx].team = _pBoard[ay][ax].team;
@@ -114,9 +100,9 @@ void Promotion(int bx, int by, Piece _pBoard[][10])
 		}
 	} while (a > 4 || a < 1);
 }
-int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn) 
+int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn) // 폰은 팀에 따라 아래로,위로 가는 것이 다르기 때문에 따로 정의
 {
-	if (team == 1 && turn % 2 == 0) {   // White
+	if (team == 1) {   // 백
 		if (_pBoard[by][bx].type > 0) {
 			if (ay + 1 == by && abs(ax - bx) == 1) {
 				_move(ax, ay, bx, by, _pBoard);
@@ -146,7 +132,7 @@ int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn)
 		}
 		return 0;
 	}
-	else if (team == 0 && turn % 2 == 1) {      // Black
+	else if (team == 0) {      // 흑
 		if (_pBoard[by][bx].type > 0) {
 			if (ay - 1 == by && abs(ax - bx) == 1) {
 				_move(ax, ay, bx, by, _pBoard);
@@ -178,7 +164,7 @@ int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn)
 	}
 	return 0;
 }
-int Ro(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn) 
+int Ro(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 {
 	if (ax != bx && ay != by) {
 		return 0;
@@ -219,7 +205,7 @@ int Ro(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn)
 	}
 	return 0;
 }
-int Kn(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn) 
+int Kn(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 {
 	int tmp_Kn[9][2] = {
 		{ax - 2,ay + 1},{ax - 2,ay - 1},{ax + 2,ay + 1},{ax + 2,ay - 1},
@@ -245,7 +231,7 @@ int Kn(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 	}
 	return 0;
 }
-int Bi(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn) 
+int Bi(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 {
 	if (abs(ax - bx) != abs(ay - by)) {
 		return 0;
@@ -293,28 +279,28 @@ int Bi(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 
 	return 0;
 }
-int Qu(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn) 
+int Qu(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 {
 
-	int Rtmp = Ro(team, ax, ay, bx, by, _pBoard,turn);
-	int Btmp = Bi(team, ax, ay, bx, by, _pBoard,turn);
+	int Rtmp = Ro(team, ax, ay, bx, by, _pBoard, turn);
+	int Btmp = Bi(team, ax, ay, bx, by, _pBoard, turn);
 
 
 	return 1;
 }
-int Ki(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10],int turn) 
+int Ki(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn)
 {
 	if (ax == 4 && ay == 1 && bx == 2 && by == 1 && _pBoard[1][1].type == 2 && _pBoard[1][3].type < 1 && team == 1)
 	{
 		cout << "Castling 하였습니다." << endl;
-		Ro(1, 1, 1, 3, 1, _pBoard,turn);
+		Ro(1, 1, 1, 3, 1, _pBoard, turn);
 		_move(ax, ay, bx, by, _pBoard);
 		return 1;
 	}
-	if (ax ==  4&& ay == 8 && bx == 2 && by == 8 && _pBoard[8][1].type == 2 && _pBoard[8][3].type < 1 && team == 0)
+	if (ax == 4 && ay == 8 && bx == 2 && by == 8 && _pBoard[8][1].type == 2 && _pBoard[8][3].type < 1 && team == 0)
 	{
 		cout << "Castling 하였습니다." << endl;
-		Ro(0, 1, 8, 3, 8, _pBoard,turn);
+		Ro(0, 1, 8, 3, 8, _pBoard, turn);
 		_move(ax, ay, bx, by, _pBoard);
 		return 1;
 	}

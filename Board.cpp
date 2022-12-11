@@ -5,7 +5,7 @@
 using namespace std;
 #define		_MAX(a, b) (((a) > (b)) ? (a) : (b))
 
-ChessBoard::ChessBoard(Piece _pBoard[][10]) { // 체스말 정의
+ChessBoard::ChessBoard(Piece _pBoard[][10]) { // 체스말 정의 {타입, 팀}
 
 	Piece out = { -1,-1 };
 	Piece empty = { 0,-1 };
@@ -23,7 +23,7 @@ ChessBoard::ChessBoard(Piece _pBoard[][10]) { // 체스말 정의
 	Piece W_King = { 6,1 };
 
 	//	if (start == true) {	// 처음
-	for (int i = 0; i <= 9; i++)  // 체스판에 말들 놓기
+	for (int i = 0; i <= 9; i++)  // 체스판에 말들 놓기 
 	{
 		_pBoard[i][0] = out;
 		_pBoard[i][9] = out;
@@ -62,24 +62,20 @@ ChessBoard::ChessBoard(Piece _pBoard[][10]) { // 체스말 정의
 	//	}
 }
 Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10],int turn_) {
-	//	cout << "41\n";
-//	Sleep(100);
 	system("cls");
 	int King[2] = { 0, };
 	int turn = turn_;
 	for (int y = 0; y <= 9; y++) {
-		//		cout << "42\n";
 		for (int x = 0; x <= 9; x++) {
-			//			cout << "43\n";
 			int team, type;
 			type = _pBoard[y][x].type;
 			team = _pBoard[y][x].team;
-			//			printf("%d", type);
+
 			if (type >= 1) {		// 팀 색 구별
 				if (team == 0)
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 				else if (team == 1)
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 			}
 			else {
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -120,17 +116,19 @@ Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10],int turn_) {
 
 			}
 		}
-
 		cout << "\n";
 	}
+
 	if (King[0] == 0) {
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 		cout << "백 승";
 		Sleep(1000);
 		exit(0);
 	}
 	if (King[1] == 0) {
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 		cout << "흑 승";
 		Sleep(1000);
 		exit(0);
@@ -138,11 +136,15 @@ Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10],int turn_) {
 	cout << "\n턴 수: " << turn;
 	if (turn % 2 == 0)
 	{
-		cout << "\n차례 : 백";
+		cout << "\n차례 : ";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+		cout << "백";
 	}
 	else
 	{
-		cout << "\n차례 : 흑";
+		cout << "\n차례 : ";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+		cout << "흑";
 	}
 	return *_pBoard;
 }

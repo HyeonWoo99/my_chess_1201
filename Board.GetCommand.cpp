@@ -14,7 +14,7 @@ void gotoXY(int x, int y) {
 	COORD pos;
 	pos.X = x;
 	pos.Y = y;
-	SetConsoleCursorPosition(handle, pos);
+	SetConsoleCursorPosition(handle, pos); // 커서 이동
 }
 
 int ChessBoard::GetCommand(Piece _pBoard[][10], int turn) {
@@ -23,8 +23,7 @@ int ChessBoard::GetCommand(Piece _pBoard[][10], int turn) {
 	int x = 3;
 	int y = 1;
 	int turn_ = turn;
-	//	if (input == 224)
-	//		input = _getch();
+
 	while (input != ENTER)
 	{
 		gotoXY(x, y);
