@@ -70,7 +70,6 @@ Piece* ChessBoard::ChessDisplay(Piece _pBoard[][10],int turn_) {
 			int team, type;
 			type = _pBoard[y][x].type;
 			team = _pBoard[y][x].team;
-
 			if (type >= 1) {		// ÆÀ »ö ±¸º°
 				if (team == 0)
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);

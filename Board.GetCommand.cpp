@@ -23,7 +23,6 @@ int ChessBoard::GetCommand(Piece _pBoard[][10], int turn) {
 	int x = 3;
 	int y = 1;
 	int turn_ = turn;
-
 	while (input != ENTER)
 	{
 		gotoXY(x, y);
@@ -51,6 +50,36 @@ int ChessBoard::GetCommand(Piece _pBoard[][10], int turn) {
 		case ENTER:
 			ax = x / 3;
 			ay = y;
+			if (_pBoard[ay][ax].type == 1)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "폰";
+			}
+			if (_pBoard[ay][ax].type == 2)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "록";
+			}
+			if (_pBoard[ay][ax].type == 3)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "나";
+			}
+			if (_pBoard[ay][ax].type == 4)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "비";
+			}
+			if (_pBoard[ay][ax].type == 5)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "퀸";
+			}
+			if (_pBoard[ay][ax].type == 6)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+				cout << "킹";
+			}
 			break;
 		}
 	}

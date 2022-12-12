@@ -20,7 +20,7 @@ int ChessBoard::MoveTo(int ax, int ay, int bx, int by, Piece _pBoard[][10], int 
 	int type = _pBoard[ay][ax].type;
 	int tmp_B[10][10] = { 0, };	//0 불가능 1 가능 2 어택
 	int turn = turn_;
-	gotoXY(0, 13);
+	gotoXY(0, 13); // 글자 표시 할 위치
 	if (team == 0 && turn % 2 == 0) // W턴인데 B선택
 	{
 		return 0;
@@ -116,9 +116,22 @@ int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn) 
 		else if (ay == 2) {
 			if (ax == bx && (by - ay == 1 || (by - ay == 2 && _pBoard[ay + 1][by].type < 1))) {
 				_move(ax, ay, bx, by, _pBoard);
+
 				return 1;
 			}
-
+		}
+		if (ay == 5) // 앙파상
+		{
+			if (_pBoard[by - 1][bx].type == 1) // 앙파상 o
+			{
+				_move(ax, ay, bx, by, _pBoard);
+				_pBoard[by - 1][bx].type = 0;
+				return 2;
+			}
+			else if (_pBoard[by - 1][bx].type != 1) //앙파상 x
+			{
+				return 0;
+			}
 		}
 		else {
 			if ((ax == bx && by - ay == 1)) {
@@ -148,7 +161,19 @@ int Pa(int team, int ax, int ay, int bx, int by, Piece _pBoard[][10], int turn) 
 				_move(ax, ay, bx, by, _pBoard);
 				return 1;
 			}
-
+		}
+		if (ay == 4) // 앙파상
+		{
+			if (_pBoard[by + 1][bx].type == 1) // 앙파상 o
+			{
+				_move(ax, ay, bx, by, _pBoard);
+				_pBoard[by + 1][bx].type = 0;
+				return 2;
+			}
+			else if (_pBoard[by + 1][bx].type != 1) //앙파상 x
+			{
+				return 0;
+			}
 		}
 		else {
 			if ((ax == bx && by - ay == -1)) {

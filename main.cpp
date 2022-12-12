@@ -14,6 +14,5 @@ int main() {
 	ChessPlay Play = ChessPlay();
 
 	Play.~ChessPlay();
-	cout << "main\n";
 	return 0;
 }
